@@ -1,3 +1,5 @@
+"use client";
+
 const treatments = [
   {
     title: "Relaxation Massage",
@@ -23,36 +25,73 @@ const treatments = [
 
 export default function Treatments() {
   return (
-    <section className="w-full py-20 px-6 bg-zinc-950">
+    <section className="w-full py-28 px-6 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-end mb-10">
-          <h2 className="text-3xl font-semibold text-white">Award Winners</h2>
-          <a href="/treatments" className="text-[#d4af37] hover:underline">
-            View Spa Menu
+        {/* HEADER */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-6">
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-[#d4af37] mb-3">
+              SIGNATURE COLLECTION
+            </p>
+            <h2 className="text-4xl md:text-5xl text-white font-semibold">
+              Award Winning Treatments
+            </h2>
+          </div>
+
+          <a
+            href="/treatments"
+            className="text-[#d4af37] border-b border-[#d4af37] pb-1 hover:opacity-80 transition"
+          >
+            View Full Menu →
           </a>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {treatments.map((item, i) => (
-            <div
-              key={i}
-              className="group rounded-xl overflow-hidden border border-zinc-700 bg-zinc-800/50 hover:-translate-y-2 transition"
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={item.image}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-                />
-              </div>
+        {/* LAYOUT */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* FEATURED CARD */}
+          <div className="lg:col-span-2 relative group rounded-2xl overflow-hidden">
+            <img
+              src={treatments[0].image}
+              className="w-full h-[420px] object-cover group-hover:scale-105 transition duration-700"
+            />
 
-              <div className="p-4">
-                <h3 className="text-white">{item.title}</h3>
-                <p className="text-[#d4af37] font-semibold mt-2">
-                  {item.price}
-                </p>
-              </div>
+            {/* OVERLAY */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+            {/* CONTENT */}
+            <div className="absolute bottom-6 left-6">
+              <h3 className="text-2xl md:text-3xl text-white font-semibold">
+                {treatments[0].title}
+              </h3>
+              <p className="text-[#d4af37] mt-2 text-lg font-medium">
+                {treatments[0].price}
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* SIDE CARDS */}
+          <div className="flex flex-col gap-6">
+            {treatments.slice(1).map((item, i) => (
+              <div
+                key={i}
+                className="group flex gap-4 items-center border border-zinc-800 rounded-xl p-3 bg-zinc-900 hover:bg-zinc-800 transition"
+              >
+                <div className="w-24 h-24 rounded-lg overflow-hidden">
+                  <img
+                    src={item.image}
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
+                </div>
+
+                <div>
+                  <h3 className="text-white text-sm font-medium">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#d4af37] text-sm mt-1">{item.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
