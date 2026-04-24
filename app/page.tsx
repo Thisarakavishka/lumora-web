@@ -10,8 +10,8 @@ export default function Home() {
       <Hero />
       <LuxuryIntro />
       <Treatments />
-      <Experience />
       <Offers />
+      <Experience />
     </div>
   );
 }
